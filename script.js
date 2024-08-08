@@ -1,27 +1,25 @@
-let menuIcon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
-
-let sections = document.querySelectorAll('section');
-let navlinks = document.querySelectorAll('header nava');
+const menuIcon = document.querySelector('#menu-icon');
+const navbar = document.querySelector('.navbar');
+const sections = document.querySelectorAll('section');
+const navlinks = document.querySelectorAll('header nav a');
 
 window.onscroll = () => {
+    const top = window.scrollY;
+
     sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsettop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
+        const offset = sec.offsetTop - 150;
+        const height = sec.offsetHeight;
+        const id = sec.getAttribute('id');
 
-        if(top >= offset && top < offset + height){
-            navlinks.forEach(links => {
-                links.classList.remove('active');
-                document.querySelector('header nav a [href*=' + id + ' ] ').classList.add
-                ('active');
-            })
+        if (top >= offset && top < offset + height) {
+            navlinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`header nav a[href*=${id}]`).classList.add('active');
         }
-    
-    })
-}
+    });
+};
 
-document.getElementById('sendButton').addEventListener('click', function() {
+document.getElementById('sendButton').addEventListener('click', () => {
     document.getElementById('message').classList.remove('hidden');
 });
